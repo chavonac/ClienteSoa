@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://com.itesz.soa" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://com.itesz.soa">
+
+<xs:element name="ConsultaDocente" type="tns:ConsultaDocente"/>
+
+<xs:element name="ConsultaDocenteResponse" type="tns:ConsultaDocenteResponse"/>
+
+<xs:element name="SQLException" type="tns:SQLException"/>
+
+<xs:element name="actualizaEstatusAlumno" type="tns:actualizaEstatusAlumno"/>
+
+<xs:element name="actualizaEstatusAlumnoResponse" type="tns:actualizaEstatusAlumnoResponse"/>
+
+<xs:complexType name="actualizaEstatusAlumno">
+<xs:sequence>
+<xs:element name="noControl" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizaEstatusAlumnoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SQLException">
+<xs:sequence>
+<xs:element name="SQLState" type="xs:string" minOccurs="0"/>
+<xs:element name="errorCode" type="xs:int"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+<xs:element name="nextException" type="tns:sqlException" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sqlException">
+<xs:complexContent>
+<xs:extension base="tns:exception">
+<xs:sequence>
+<xs:element name="nextException" type="tns:sqlException" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="exception">
+<xs:complexContent>
+<xs:extension base="tns:throwable">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="throwable">
+<xs:sequence>
+<xs:element name="stackTrace" type="tns:stackTraceElement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="stackTraceElement" final="extension restriction">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="ConsultaDocente">
+<xs:sequence>
+<xs:element name="noDocente" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ConsultaDocenteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:docente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="docente">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="escolaridad" type="xs:string" minOccurs="0"/>
+<xs:element name="especialidad" type="xs:string" minOccurs="0"/>
+<xs:element name="estatus" type="xs:string" minOccurs="0"/>
+<xs:element name="idCarrera" type="xs:int"/>
+<xs:element name="noDocente" type="xs:int"/>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="usuario">
+<xs:sequence>
+<xs:element name="clave" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="estatus" type="xs:string" minOccurs="0"/>
+<xs:element name="idUsuario" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="sexo" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+<xs:element name="tipo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
